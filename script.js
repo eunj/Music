@@ -10,11 +10,6 @@ $(document).ready(function(){
 	
 	var temp_x = 0;//좌표값 비교 임시변수
 	var count = 0;//좌표값 저장 카운터
-
-	var gradient = function(number2){
-		$('#im').css({"-webkit-transform": "rotate("+Number(number2)*10+"deg)"});
-	}
-	 
 	
 	var check = function (number1){
 		
@@ -25,7 +20,6 @@ $(document).ready(function(){
 		}else if(count === 1){//카운터가 1일 때 임시변수 좌표와 다르면 악기 소리남
 			
 			if( temp_x != Math.abs(Number(number1)) ){
-				//document.getElementById("ssound").play();
 				count++;//카운터 2일 때 check 함수 작동이 중지(악기 소리가 중복으로 나는 것 피함 악기소리가 나면 카운터 0으로 시작)
 				setTimeout(function(){count = 0;$("#ssound")[0].load();$("#ssound")[0].play();},1100);
 			}
@@ -41,7 +35,6 @@ $(document).ready(function(){
 	    var z = event.accelerationIncludingGravity.z;
 		
 		$("#xVal").html(Math.round(x));
-		gradient(Math.round(x));
 		$("#yVal").html(y);
 		$("#zVal").html(z);		
 		
@@ -58,7 +51,6 @@ $(document).ready(function(){
 		var newX = orgX + x;
 		newX = Math.max(0, newX);
 		newX = Math.min(maxX, newX);
-		//$("#tVal").html(Math.abs(Number(newX)));
 		check(Number(newX));//check 함수로 이동
 		
 
@@ -80,11 +72,6 @@ $(document).ready(function(){
 
 	window.addEventListener("devicemotion", handleMotionEvent, true);
 
-	//$("#ball").css("left", 30);
-	//$("#ball").css("top", 30);
-	
-
-	//document.getElementById("ssound").play();
 	
 
 });
